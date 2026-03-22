@@ -1,9 +1,16 @@
 package com.example.OrderManagementSystem.Order.Management.System.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="users")
 public class User {
 
+    @Id
     private String username;
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public User() {

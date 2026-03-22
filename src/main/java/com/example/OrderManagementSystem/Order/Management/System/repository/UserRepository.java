@@ -1,7 +1,12 @@
 package com.example.OrderManagementSystem.Order.Management.System.repository;
 
+import com.example.OrderManagementSystem.Order.Management.System.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public class UserRepository {
+public interface UserRepository extends JpaRepository<User,String> {
+    Optional<User> findByUsername(String username);
 }

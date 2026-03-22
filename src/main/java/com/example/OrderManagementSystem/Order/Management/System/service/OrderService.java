@@ -8,6 +8,7 @@ import com.example.OrderManagementSystem.Order.Management.System.repository.Orde
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -46,16 +47,13 @@ public class OrderService {
         }
     }
 
-    public Map<String, Order> getAllOrder(){
+    public List<Order> getAllOrder(){
         return repository.findAll();
     }
 
     public Order getOrderById(String id){
 
-        Order order=repository.findById(id);
-        if(order==null){
-            throw new OrderNotFoundException("Order not found "+id);
-        }
+        Order order=repository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order not found "+id));;
         return order;
     }
 

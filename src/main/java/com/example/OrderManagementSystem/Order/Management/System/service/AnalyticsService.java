@@ -19,19 +19,19 @@ public class AnalyticsService {
     private OrderRepository repository;
 
     public double totalOrderAmount(){
-        return repository.findAll().values().stream().mapToDouble(Order::getAmount).sum();
+        return repository.findAll().stream().mapToDouble(Order::getAmount).sum();
     }
 
     public Map<OrderType, Long> countBuySell(){
-        return repository.findAll().values().stream().collect(Collectors.groupingBy(Order::getOrder_type,Collectors.counting()));
+        return repository.findAll().stream().collect(Collectors.groupingBy(Order::getOrder_type,Collectors.counting()));
     }
 
     public Map<OrderStatus, List<Order>> groupBystatus(){
-        return repository.findAll().values().stream().collect(Collectors.groupingBy(Order::getOrder_status));
+        return repository.findAll().stream().collect(Collectors.groupingBy(Order::getOrder_status));
     }
 
     public Optional<String> topCustomerByVolume(){
-        return repository.findAll().values().stream().collect(Collectors.groupingBy(Order::getCustomer_id,Collectors.summingDouble(Order::getAmount)))
+        return repository.findAll().stream().collect(Collectors.groupingBy(Order::getCustomer_id,Collectors.summingDouble(Order::getAmount)))
                 .entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey);
     }
 

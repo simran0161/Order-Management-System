@@ -1,11 +1,22 @@
 package com.example.OrderManagementSystem.Order.Management.System.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "orders")
 public class Order {
 
+    @Id
     private String order_id;
+
     private String customer_id;
+
+    @Enumerated(EnumType.STRING)
     private OrderType order_type;
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus order_status;
+
     private double amount;
     private int quantity;
 

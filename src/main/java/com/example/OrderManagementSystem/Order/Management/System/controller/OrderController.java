@@ -5,6 +5,7 @@ import com.example.OrderManagementSystem.Order.Management.System.service.OrderSe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -12,15 +13,15 @@ import java.util.Map;
 public class OrderController {
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
-    @PostMapping
+    @PostMapping("/add")
     public Order createOrder(@RequestBody Order order){
         return orderService.createorder(order);
     }
 
-    @GetMapping
-    public Map<String,Order> getAllOrders(){
+    @GetMapping("/all")
+    public List<Order> getAllOrders(){
         return orderService.getAllOrder();
     }
 
